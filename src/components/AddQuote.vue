@@ -5,12 +5,12 @@
                 <div class="container">
                     <div class="row text-white">
                         <div class="col-xl-5 col-lg-6 col-md-8 col-sm-10 mx-auto text-center form">
-                            <h4 class="display-5 py-2 ">Write your quote here</h4>
+                            <h4 class="display-5  py-2 ">Write your quote here</h4>
                             <div class="px-2">
                                 <form action="" class="justify-content-center">
                                     <div class="form-group">
                                         <label class="sr-only">Write your quotes</label>
-                                        <textarea class="form-control" v-model="quote" ></textarea>
+                                        <textarea class="form-control" v-model="quote"  required pattern="[0-9a-zA-Z_.-]*"></textarea>
                                     </div>
                                     
                                     <button class="btn btn-success btn-lg mb-3" @click.prevent="addQuote" >Add Quote</button>
