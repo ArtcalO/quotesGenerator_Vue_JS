@@ -1,6 +1,6 @@
 <template>
 	<div class="row">
-		<app-quote v-for="quote in quotes">{{ quote }}</app-quote>
+		<app-quote v-for="(quote, i) in quotes" @click.native="getQuoteIndex(i)">{{ quote }}</app-quote>
 	</div>
 </template>
 
@@ -10,6 +10,11 @@
 		props : ['quotes'],
 		components : {
 			appQuote : Quote
+		},
+		methods : {
+			getQuoteIndex (i){
+				this.$emit('selecteQuoteIndex', i);
+			}
 		}
 	};
 </script>
