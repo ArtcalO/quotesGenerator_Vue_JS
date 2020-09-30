@@ -1,15 +1,17 @@
 <template>
     <div >
-        <app-header></app-header>
+        <app-header :quotes="quotes" :max="max"></app-header>
         <hr>
         <div >
             <app-add-quote @quoteCreated="appendQuote"></app-add-quote>
         </div>
         
-        <div>
-            <app-quote-array :quotes="quotes" ></app-quote-array>
+        <div class="m-2 p-2" >
+            <app-quote-array :quotes="quotes"  @selecteQuoteIndex="spliceQuote" ></app-quote-array>
         </div>
-
+        <div class=" col-sm alert alert-primary mx-auto text-center" role="alert">
+              Tip : Click on a quote to delete it !
+        </div>
         <div>
             <app-footer></app-footer>
         </div>
@@ -26,7 +28,6 @@
 
         data (){
         	return {
-                q:'',
         		quotes : [
         			'WonderFul Quotes'
         		],
@@ -34,8 +35,27 @@
         	}
         },
         methods : {
+            
             appendQuote($emit){
-                this.quotes.push($emit);
+                var disallowed = $emit.match(/^\s+$/);
+                if(disallowed == null && $emit != "" ){
+                    if(this.quotes.length < this.max){
+
+                        this.quotes.push($emit);
+                    }
+                    else{
+                        alert("Quotes are full, please delete some to add others !")
+                    }
+                }
+                else{
+                    alert("Input a valid Quote \n No blank space allowed as quote");
+                }
+                
+
+            },
+            spliceQuote($emit){ 
+
+                this.quotes.splice($emit, 1);
 
             }
         },
